@@ -1,0 +1,11 @@
+{
+    "dependencies": {
+        "comb": "0.1.1",
+        "express": "2.5.8",
+        "jade": ">= 0.0.1",
+        "patio": "0.0.7"
+    },
+    "name": "Express Template",
+    "private": true,
+    "version": "0.0.1"
+}
