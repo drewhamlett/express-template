@@ -1,0 +1,10 @@
+{
+    "host": "localhost",
+    "port": 3306,
+    "type": "mysql",
+    "maxConnections": 10,
+    "minConnections": 5,
+    "user": "root",
+    "password": "",
+    "database": "mbDB"
+}

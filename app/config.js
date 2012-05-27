@@ -1,15 +1,17 @@
 var express = require('express');
-var patio = require('patio');
 var comb = require('comb');
+
+var db = require('./db');
 
 // -- logging
 var Logger = comb.logging.Logger;
 var Level = comb.logging.Level;
 
-// -- models
-var User = require('./app/models/User');
-
 module.exports = function(app) {
+
+    new comb.logging.BasicConfigurator().configure();
+    Logger.getLogger("patio").level = Level.INFO;
+    db(app);
 
     // Configuration
     app.configure(function() {
@@ -32,31 +34,6 @@ module.exports = function(app) {
         app.use(express.errorHandler());
     });
 
-    setupModels(app);
 
     return app;
 };
-
-
-function setupModels(app) {
-
-    new comb.logging.BasicConfigurator().configure();
-    Logger.getLogger("patio").level = Level.INFO;
-
-    var db = patio.createConnection({
-        host: "localhost",
-        port: 3306,
-        type: "mysql",
-        maxConnections: 10,
-        minConnections: 5,
-        user: "root",
-        password: "",
-        database: 'myDB'
-    });
-
-    comb.when(User(patio), function(User) {
-        app.configure(function() {
-            app.set('User', User);
-        });
-    });
-}

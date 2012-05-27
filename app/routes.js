@@ -1,7 +1,7 @@
 module.exports = function(app) {
 
     //require controllers
-    var application = require('./app/controllers/application')(app);
+    var application = require('./controllers/application')(app);
 
     //define routes
     app.get('/', application.index);
